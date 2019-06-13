@@ -6,7 +6,7 @@
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddOrEdit","Employee",FormMethod.Post,new { enctype= "multipart/form-data" , onSubmit ="return-jQueryAjaxPost(this);",data_restUrl = Url.Action ("AddOrEdit", "Employee", new { id = 0 }) })) //data-resetUrl
 {
     @Html.AntiForgeryToken()
 <div class="row">
@@ -15,6 +15,7 @@
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.EmployeeID)
+        @Html.HiddenFor(model => model.ImagePath)
 
 
         <div class="col-md-6">
@@ -51,7 +52,12 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="submit" value="submit" class="btn btn-default" />
+                    @if(Model.EmployeeID!= 0)
+                    {
+                        <a class="btn btn-success" onclick="refreshAddNewTab('@Url.Action("AddOrEdit","Employee", new { id=0})' , false)"><i class="fa fa-plus"></i>Add New</a>
+                    }
+
                 </div>
             </div>
         </div>
@@ -60,12 +66,12 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                    <img src="@Url.Content(Model.ImagePath)" style="margin: 10px " height="200" width="200" id="imagePreview" />
+                    <input type="file" name="ImageUpload" accept="image/jpeg, image/png" onchange="ShowImagePreview(this, document.getElementById('imagePreview')" />
                 </div>
             </div>
         </div>
-       
+
     </div>
 </div>
 }
