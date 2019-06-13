@@ -153,6 +153,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppFiles\Images\peakyblinders3003a.jpg" />
     <Content Include="App_Data\jQueryAjaxDB.mdf" />
     <Content Include="App_Data\jQueryAjaxDB_log.ldf">
       <DependentUpon>jQueryAjaxDB.mdf</DependentUpon>
@@ -208,6 +209,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\ViewAll.cshtml" />
+    <Content Include="Views\Employee\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
